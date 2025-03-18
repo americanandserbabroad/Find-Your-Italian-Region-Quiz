@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Where Should You Move in Italy?</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Which Region in Italy is Best for You?</h1>
+        <form id="quizForm">
+            <div class="question">
+                <p>1. How important is being near an international airport?</p>
+                <label><input type="radio" name="airport" value="very"> Very Important (Within 1 hour)</label>
+                <label><input type="radio" name="airport" value="moderate"> Somewhat Important (1-3 hours)</label>
+                <label><input type="radio" name="airport" value="not_important"> Not Important</label>
+            </div>
+
+            <div class="question">
+                <p>2. What kind of weather do you prefer?</p>
+                <label><input type="radio" name="weather" value="warm"> Warm (South, Mediterranean)</label>
+                <label><input type="radio" name="weather" value="mild"> Mild (Central Italy)</label>
+                <label><input type="radio" name="weather" value="cold"> Cold (Northern, Alpine regions)</label>
+            </div>
+
+            <div class="question">
+                <p>3. Do you need the 7% tax incentive?</p>
+                <label><input type="radio" name="tax" value="yes"> Yes</label>
+                <label><input type="radio" name="tax" value="no"> No</label>
+            </div>
+
+            <div class="question">
+                <p>4. Do you prefer a city or small town?</p>
+                <label><input type="radio" name="city" value="city"> City (Milan, Rome, Florence, etc.)</label>
+                <label><input type="radio" name="city" value="town"> Small Town (Countryside, villages, coastal towns)</label>
+            </div>
+
+            <button type="button" onclick="calculateResult()">Find My Italian Region</button>
+        </form>
+
+        <div id="result"></div>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
