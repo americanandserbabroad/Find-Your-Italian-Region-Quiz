@@ -1,49 +1,453 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Where Should You Move in Italy?</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Find Your Ideal Italian Region</title>
+  <style>
+    /* Basic mobile-responsive styling */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 20px;
+    }
+    .quiz-container {
+      max-width: 600px;
+      margin: auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .quiz-container h1 {
+      text-align: center;
+      font-size: 1.5em;
+      margin-bottom: 0.5em;
+    }
+    .quiz-container p {
+      text-align: center;
+      font-size: 1em;
+      margin-bottom: 1.5em;
+    }
+    fieldset {
+      border: none;
+      margin-bottom: 15px;
+    }
+    legend {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    .options label {
+      display: block;
+      margin: 4px 0;
+      font-weight: normal;
+    }
+    .options input[type="radio"] {
+      margin-right: 8px;
+    }
+    .submit-btn {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      font-size: 1em;
+      font-weight: bold;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    .submit-btn:hover {
+      background-color: #45a049;
+    }
+    #result {
+      margin-top: 20px;
+      font-size: 1.2em;
+      font-weight: bold;
+      text-align: center;
+    }
+  </style>
 </head>
 <body>
+  <div class="quiz-container">
+    <h1>Find Your Ideal Italian Region</h1>
+    <p>Answer the questions below to see which region of Italy best matches your lifestyle and preferences.</p>
+    <!-- Quiz Form -->
+    <form id="quizForm">
+      <!-- 1. Proximity to an international airport -->
+      <fieldset>
+        <legend>1. How important is being close to an international airport?</legend>
+        <div class="options">
+          <label><input type="radio" name="airport" value="noPref" checked> Not Important</label>
+          <label><input type="radio" name="airport" value="airport"> Important (within 1-2 hours)</label>
+        </div>
+      </fieldset>
+      <!-- 2. Weather preference (expanded options) -->
+      <fieldset>
+        <legend>2. What kind of climate do you prefer?</legend>
+        <div class="options">
+          <label><input type="radio" name="climate" value="noPref" checked> Not Important</label>
+          <label><input type="radio" name="climate" value="climate_hot"> Hot summers and mild winters</label>
+          <label><input type="radio" name="climate" value="climate_four"> Four distinct seasons (warm summers, cold winters)</label>
+          <label><input type="radio" name="climate" value="climate_cool"> Cooler summers with snowy winters</label>
+          <label><input type="radio" name="climate" value="climate_mild"> Very mild climate year-round</label>
+        </div>
+      </fieldset>
+      <!-- 3. 7% tax incentive qualification -->
+      <fieldset>
+        <legend>3. Do you qualify for Italy’s 7% flat tax incentive (and plan to use it)?</legend>
+        <div class="options">
+          <label><input type="radio" name="tax" value="noPref" checked> Not Important / Not Applicable</label>
+          <label><input type="radio" name="tax" value="tax_yes"> Yes, I qualify and will take advantage of it</label>
+          <label><input type="radio" name="tax" value="tax_no"> No, I don’t qualify or it’s not a factor</label>
+        </div>
+      </fieldset>
+      <!-- 4. City, small town, or countryside preference -->
+      <fieldset>
+        <legend>4. Do you prefer a big city, a small town, or a countryside setting?</legend>
+        <div class="options">
+          <label><input type="radio" name="urban" value="noPref" checked> Not Important</label>
+          <label><input type="radio" name="urban" value="pref_city"> Big city</label>
+          <label><input type="radio" name="urban" value="pref_town"> Small town</label>
+          <label><input type="radio" name="urban" value="pref_country"> Countryside</label>
+        </div>
+      </fieldset>
+      <!-- 5. Importance of access to top schools -->
+      <fieldset>
+        <legend>5. How important is access to top schools or universities?</legend>
+        <div class="options">
+          <label><input type="radio" name="schools" value="noPref" checked> Not Important</label>
+          <label><input type="radio" name="schools" value="schools_yes"> Important (need quality schools nearby)</label>
+          <label><input type="radio" name="schools" value="schools_no"> Not a priority (no need for top schools)</label>
+        </div>
+      </fieldset>
+      <!-- 6. Need for an expat community -->
+      <fieldset>
+        <legend>6. Do you need a significant expat community nearby?</legend>
+        <div class="options">
+          <label><input type="radio" name="expat" value="noPref" checked> Not Important</label>
+          <label><input type="radio" name="expat" value="expat_yes"> Yes, I prefer having other expats around</label>
+          <label><input type="radio" name="expat" value="expat_no"> No, I prefer a more local environment</label>
+        </div>
+      </fieldset>
+      <!-- 7. Preferred geographic setting (coast, mountains, lakes, etc.) -->
+      <fieldset>
+        <legend>7. Which geographic setting do you prefer?</legend>
+        <div class="options">
+          <label><input type="radio" name="geo" value="noPref" checked> Not Important</label>
+          <label><input type="radio" name="geo" value="geo_coast"> By the sea (coastline)</label>
+          <label><input type="radio" name="geo" value="geo_mountains"> In the mountains</label>
+          <label><input type="radio" name="geo" value="geo_lakes"> Near lakes</label>
+          <label><input type="radio" name="geo" value="geo_hills"> Rolling countryside or hills</label>
+        </div>
+      </fieldset>
+      <!-- 8. Job opportunities vs. retirement/remote work -->
+      <fieldset>
+        <legend>8. What best describes your work situation?</legend>
+        <div class="options">
+          <label><input type="radio" name="work" value="noPref" checked> Not Important</label>
+          <label><input type="radio" name="work" value="work_job"> I will need to find a local job</label>
+          <label><input type="radio" name="work" value="work_remote"> Retired or working remotely (no local job needed)</label>
+        </div>
+      </fieldset>
+      <!-- 9. Access to healthcare and hospitals -->
+      <fieldset>
+        <legend>9. How important is having good healthcare (hospitals, clinics) nearby?</legend>
+        <div class="options">
+          <label><input type="radio" name="health" value="noPref" checked> Not Important</label>
+          <label><input type="radio" name="health" value="health_yes"> Very important (need excellent healthcare access)</label>
+          <label><input type="radio" name="health" value="health_no"> Not a major concern</label>
+        </div>
+      </fieldset>
+      <!-- 10. Tourist-heavy vs. local culture preference -->
+      <fieldset>
+        <legend>10. What kind of cultural environment do you prefer?</legend>
+        <div class="options">
+          <label><input type="radio" name="culture" value="noPref" checked> Not Important</label>
+          <label><input type="radio" name="culture" value="culture_local"> Authentic local culture (less touristy)</label>
+          <label><input type="radio" name="culture" value="culture_tourist"> Popular with tourists (more international feel)</label>
+        </div>
+      </fieldset>
+      <!-- 11. Lifestyle pace preference -->
+      <fieldset>
+        <legend>11. What lifestyle pace do you prefer?</legend>
+        <div class="options">
+          <label><input type="radio" name="pace" value="noPref" checked> Not Important</label>
+          <label><input type="radio" name="pace" value="pace_fast"> Fast-paced city life</label>
+          <label><input type="radio" name="pace" value="pace_slow"> Slow, laid-back life</label>
+          <label><input type="radio" name="pace" value="pace_medium"> In-between (balanced pace)</label>
+        </div>
+      </fieldset>
+      <!-- 12. Cost of living preferences (expanded with brackets) -->
+      <fieldset>
+        <legend>12. What is your preferred cost of living or monthly budget?</legend>
+        <div class="options">
+          <label><input type="radio" name="cost" value="noPref" checked> Not Important</label>
+          <label><input type="radio" name="cost" value="cost_low"> Under €1500 per month (Low budget)</label>
+          <label><input type="radio" name="cost" value="cost_med"> €1500 - €2500 per month (Moderate budget)</label>
+          <label><input type="radio" name="cost" value="cost_high"> €2500 - €4000 per month (High budget)</label>
+          <label><input type="radio" name="cost" value="cost_ultra"> Above €4000 per month (No budget constraints)</label>
+        </div>
+      </fieldset>
+      <!-- 13. Proximity to outdoor activities (skiing, hiking, beaches, etc.) -->
+      <fieldset>
+        <legend>13. Which outdoor activities do you want access to nearby?</legend>
+        <div class="options">
+          <label><input type="radio" name="outdoors" value="noPref" checked> Not Important</label>
+          <label><input type="radio" name="outdoors" value="out_ski"> Skiing and winter sports</label>
+          <label><input type="radio" name="outdoors" value="out_hike"> Hiking and nature trails</label>
+          <label><input type="radio" name="outdoors" value="out_cycle"> Cycling routes</label>
+          <label><input type="radio" name="outdoors" value="out_beach"> Beaches and water activities</label>
+        </div>
+      </fieldset>
+      <!-- 14. Comfort with Italian language -->
+      <fieldset>
+        <legend>14. How comfortable are you with speaking Italian?</legend>
+        <div class="options">
+          <label><input type="radio" name="language" value="noPref" checked> Not Important</label>
+          <label><input type="radio" name="language" value="lang_none"> Not comfortable (need an English-friendly area)</label>
+          <label><input type="radio" name="language" value="lang_basic"> Basic proficiency (will learn, but some English support helps)</label>
+          <label><input type="radio" name="language" value="lang_fluent"> Conversational/Fluent (language is not an issue)</label>
+        </div>
+      </fieldset>
+      <!-- 15. Accessibility to public transportation -->
+      <fieldset>
+        <legend>15. How important is easy access to public transportation?</legend>
+        <div class="options">
+          <label><input type="radio" name="transit" value="noPref" checked> Not Important</label>
+          <label><input type="radio" name="transit" value="transit_yes"> Very important (prefer not to rely on a car)</label>
+          <label><input type="radio" name="transit" value="transit_no"> Not important (okay with driving)</label>
+        </div>
+      </fieldset>
+      <!-- 16. Quality of infrastructure (roads, internet, etc.) -->
+      <fieldset>
+        <legend>16. Do you require modern infrastructure (good roads, high-speed internet, etc.)?</legend>
+        <div class="options">
+          <label><input type="radio" name="infrastructure" value="noPref" checked> Not Important</label>
+          <label><input type="radio" name="infrastructure" value="infra_yes"> Yes, high-quality infrastructure is crucial</label>
+          <label><input type="radio" name="infrastructure" value="infra_no"> No, I can manage with basic infrastructure</label>
+        </div>
+      </fieldset>
+      <!-- 17. Community safety and crime rate concerns -->
+      <fieldset>
+        <legend>17. How important is a very low crime rate and community safety?</legend>
+        <div class="options">
+          <label><input type="radio" name="safety" value="noPref" checked> Not Important</label>
+          <label><input type="radio" name="safety" value="safe_yes"> Very important (want a very safe area)</label>
+          <label><input type="radio" name="safety" value="safe_no"> Not a major concern</label>
+        </div>
+      </fieldset>
+      <!-- 18. Local economy strength (replacing food & wine culture question) -->
+      <fieldset>
+        <legend>18. How important is a strong local economy or job market?</legend>
+        <div class="options">
+          <label><input type="radio" name="economy" value="noPref" checked> Not Important</label>
+          <label><input type="radio" name="economy" value="econ_yes"> Important (want a region with a strong economy)</label>
+          <label><input type="radio" name="economy" value="econ_no"> Not important (okay with a weaker economy)</label>
+        </div>
+      </fieldset>
+      <!-- 19. Property ownership vs. renting preference -->
+      <fieldset>
+        <legend>19. Do you prefer to buy property or rent your home?</legend>
+        <div class="options">
+          <label><input type="radio" name="housing" value="noPref" checked> Not Important</label>
+          <label><input type="radio" name="housing" value="house_buy"> Prefer to buy property</label>
+          <label><input type="radio" name="housing" value="house_rent"> Prefer to rent</label>
+        </div>
+      </fieldset>
+      <!-- 20. Social/cultural scene preferences -->
+      <fieldset>
+        <legend>20. What kind of social & cultural scene do you prefer?</legend>
+        <div class="options">
+          <label><input type="radio" name="social" value="noPref" checked> Not Important</label>
+          <label><input type="radio" name="social" value="social_vibrant"> Vibrant (lots of arts, festivals, nightlife)</label>
+          <label><input type="radio" name="social" value="social_quiet"> Quiet (low-key, not much nightlife)</label>
+        </div>
+      </fieldset>
+      <!-- Submit Button -->
+      <button type="button" class="submit-btn" onclick="calculateResult()">See My Recommended Region</button>
+    </form>
+    <!-- Result Display -->
+    <div id="result"></div>
+  </div>
 
-    <div class="container">
-        <h1>Which Region in Italy is Best for You?</h1>
-        <form id="quizForm">
-            <div class="question">
-                <p>1. How important is being near an international airport?</p>
-                <label><input type="radio" name="airport" value="very"> Very Important (Within 1 hour)</label>
-                <label><input type="radio" name="airport" value="moderate"> Somewhat Important (1-3 hours)</label>
-                <label><input type="radio" name="airport" value="not_important"> Not Important</label>
-            </div>
+  <script>
+    // Mapping of answer choices to regions that fit those preferences
+    const regionGroups = {
+      // Regions with major international airports or easy access to one
+      airport: ["Lombardy","Lazio","Campania","Tuscany","Veneto","Emilia-Romagna","Piedmont","Sicily","Sardinia","Apulia","Calabria","Liguria","Friuli-Venezia Giulia","Abruzzo","Marche"],
+      // Climate preferences
+      climate_hot: ["Sicily","Calabria","Apulia","Sardinia","Campania","Lazio"],            // Hot summers, mild winters
+      climate_four: ["Lombardy","Piedmont","Veneto","Emilia-Romagna","Friuli-Venezia Giulia","Umbria","Marche"],  // Four distinct seasons
+      climate_cool: ["Trentino-Alto Adige","Valle d'Aosta"],                                // Cooler summers, snowy winters
+      climate_mild: ["Liguria"],                                                           // Very mild year-round climate
+      // Tax incentive (7% flat tax) eligibility regions (southern regions, small towns)
+      tax_yes: ["Sicily","Calabria","Sardinia","Campania","Basilicata","Abruzzo","Molise","Apulia"],
+      // City/town/countryside preference
+      pref_city: ["Lombardy","Lazio","Campania","Piedmont","Emilia-Romagna","Tuscany","Liguria","Sicily","Veneto","Apulia"],   // Regions with large cities
+      pref_town: ["Tuscany","Umbria","Marche","Abruzzo","Friuli-Venezia Giulia","Calabria","Basilicata","Piedmont"],           // Regions known for small towns
+      pref_country: ["Molise","Basilicata","Abruzzo","Umbria","Calabria","Sardinia"],                                          // Regions with lots of countryside
+      // Access to top schools
+      schools_yes: ["Lombardy","Lazio","Tuscany","Emilia-Romagna","Piedmont","Veneto"],  // Regions with good international or quality schools
+      // Expat community preference
+      expat_yes: ["Tuscany","Lazio","Lombardy","Umbria","Marche","Abruzzo","Apulia","Sicily"],  // Regions with notable expat communities
+      expat_no: ["Molise","Basilicata","Calabria","Friuli-Venezia Giulia"],                   // Regions that are very local (few expats)
+      // Geographic setting preferences
+      geo_coast: ["Liguria","Tuscany","Lazio","Campania","Basilicata","Calabria","Apulia","Sicily","Sardinia","Veneto","Marche","Abruzzo","Molise","Emilia-Romagna","Friuli-Venezia Giulia"], // Has coastline
+      geo_mountains: ["Valle d'Aosta","Trentino-Alto Adige","Piedmont","Lombardy","Veneto","Friuli-Venezia Giulia","Abruzzo","Basilicata","Calabria"], // Mountainous areas
+      geo_lakes: ["Lombardy","Piedmont","Veneto","Trentino-Alto Adige","Lazio","Umbria"], // Known for lakes
+      geo_hills: ["Tuscany","Umbria","Marche","Piedmont","Emilia-Romagna"],               // Rolling hill countryside (vineyards, etc.)
+      // Work situation
+      work_job: ["Lombardy","Lazio","Piedmont","Emilia-Romagna","Veneto"],        // Strong job markets
+      work_remote: ["Tuscany","Liguria","Abruzzo","Apulia","Sicily"],            // Popular for retirees/remote workers (good lifestyle)
+      // Healthcare importance
+      health_yes: ["Lombardy","Emilia-Romagna","Veneto","Tuscany","Friuli-Venezia Giulia","Trentino-Alto Adige","Piedmont","Lazio"], // Regions with top healthcare facilities
+      // Tourist vs local culture
+      culture_local: ["Molise","Basilicata","Calabria","Abruzzo","Friuli-Venezia Giulia","Umbria","Marche"], // Less touristy regions
+      culture_tourist: ["Tuscany","Lazio","Veneto","Campania","Lombardy","Trentino-Alto Adige","Liguria","Apulia"], // Popular tourist regions
+      // Lifestyle pace
+      pace_fast: ["Lombardy","Lazio","Campania"],    // Fast-paced city regions (Milan, Rome, Naples areas)
+      pace_slow: ["Molise","Basilicata","Umbria","Sardinia","Calabria"], // Very laid-back regions
+      // Cost of living brackets
+      cost_low: ["Abruzzo","Molise","Basilicata","Calabria","Sicily","Apulia","Umbria","Marche"],    // Low cost of living regions
+      cost_med: ["Piedmont","Veneto","Liguria","Emilia-Romagna","Friuli-Venezia Giulia","Tuscany","Marche","Umbria"], // Moderate cost regions
+      cost_high: ["Lombardy","Lazio","Trentino-Alto Adige","Tuscany"], // High cost regions (if budget allows)
+      // (cost_ultra: no bias needed since all regions are affordable with very high budget)
+      // Outdoor activities
+      out_ski: ["Valle d'Aosta","Trentino-Alto Adige","Veneto","Lombardy","Piedmont","Abruzzo"], // Regions with skiing/snow sports
+      out_hike: ["Trentino-Alto Adige","Abruzzo","Sardinia","Sicily","Liguria","Valle d'Aosta"],  // Great hiking and nature
+      out_cycle: ["Emilia-Romagna","Tuscany","Piedmont","Apulia","Trentino-Alto Adige"],         // Known for cycling routes
+      out_beach: ["Sardinia","Sicily","Apulia","Calabria","Campania","Liguria","Tuscany","Marche","Emilia-Romagna","Veneto"], // Known for beaches
+      // Language comfort
+      lang_none: ["Lazio","Lombardy","Tuscany","Veneto","Trentino-Alto Adige"], // English-friendly regions (tourist/expat areas or bilingual)
+      lang_basic: ["Lazio","Lombardy","Tuscany","Veneto"],                     // Similar to above (need some English support)
+      // (lang_fluent: no bias, any region is fine if fluent)
+      // Public transportation importance
+      transit_yes: ["Lombardy","Emilia-Romagna","Veneto","Piedmont","Liguria","Tuscany","Lazio","Friuli-Venezia Giulia"], // Regions with good public transit networks
+      // Infrastructure quality
+      infra_yes: ["Lombardy","Emilia-Romagna","Trentino-Alto Adige","Valle d'Aosta","Veneto","Piedmont","Friuli-Venezia Giulia"], // Regions with modern infrastructure
+      // Safety importance
+      safe_yes: ["Valle d'Aosta","Trentino-Alto Adige","Friuli-Venezia Giulia","Basilicata","Molise","Marche","Umbria"], // Safest, low-crime regions
+      // Local economy strength
+      econ_yes: ["Lombardy","Lazio","Veneto","Emilia-Romagna","Piedmont"], // Strong local economies
+      // Property vs renting
+      house_buy: ["Sicily","Sardinia","Calabria","Molise","Abruzzo","Basilicata"], // Regions with affordable property or incentives to buy
+      house_rent: ["Lombardy","Lazio","Tuscany","Liguria","Emilia-Romagna"],       // Regions where renting is common or practical (often pricier areas)
+      // Social/cultural scene
+      social_vibrant: ["Lombardy","Lazio","Emilia-Romagna","Campania","Tuscany","Veneto","Piedmont"], // Vibrant arts/nightlife scenes
+      social_quiet: ["Molise","Basilicata","Friuli-Venezia Giulia","Umbria","Calabria"]              // Quiet social scene regions
+    };
 
-            <div class="question">
-                <p>2. What kind of weather do you prefer?</p>
-                <label><input type="radio" name="weather" value="warm"> Warm (South, Mediterranean)</label>
-                <label><input type="radio" name="weather" value="mild"> Mild (Central Italy)</label>
-                <label><input type="radio" name="weather" value="cold"> Cold (Northern, Alpine regions)</label>
-            </div>
+    function calculateResult() {
+      // Initialize score for each of Italy's 20 regions
+      const regions = ["Abruzzo","Basilicata","Calabria","Campania","Emilia-Romagna",
+                       "Friuli-Venezia Giulia","Lazio","Liguria","Lombardy","Marche",
+                       "Molise","Piedmont","Apulia","Sardinia","Sicily",
+                       "Trentino-Alto Adige","Tuscany","Umbria","Valle d'Aosta","Veneto"];
+      let scores = {};
+      regions.forEach(region => { scores[region] = 0; });
 
-            <div class="question">
-                <p>3. Do you need the 7% tax incentive?</p>
-                <label><input type="radio" name="tax" value="yes"> Yes</label>
-                <label><input type="radio" name="tax" value="no"> No</label>
-            </div>
+      // Helper to add points to all regions in a given preference group
+      function addPoints(groupName) {
+        if (regionGroups[groupName]) {
+          regionGroups[groupName].forEach(region => { scores[region] += 1; });
+        }
+      }
 
-            <div class="question">
-                <p>4. Do you prefer a city or small town?</p>
-                <label><input type="radio" name="city" value="city"> City (Milan, Rome, Florence, etc.)</label>
-                <label><input type="radio" name="city" value="town"> Small Town (Countryside, villages, coastal towns)</label>
-            </div>
+      // Tally points based on selected answers
+      const q1 = document.querySelector('input[name="airport"]:checked').value;
+      if (q1 !== "noPref") addPoints(q1);
 
-            <button type="button" onclick="calculateResult()">Find My Italian Region</button>
-        </form>
+      const q2 = document.querySelector('input[name="climate"]:checked').value;
+      if (q2 !== "noPref") addPoints(q2);
 
-        <div id="result"></div>
-    </div>
+      const q3 = document.querySelector('input[name="tax"]:checked').value;
+      if (q3 === "tax_yes") addPoints("tax_yes");
+      // If tax incentive is not applicable or not important, no points are added
 
-    <script src="script.js"></script>
+      const q4 = document.querySelector('input[name="urban"]:checked').value;
+      if (q4 !== "noPref") addPoints(q4);
 
+      const q5 = document.querySelector('input[name="schools"]:checked').value;
+      if (q5 === "schools_yes") addPoints("schools_yes");
+      // If not important or not needed, no points added
+
+      const q6 = document.querySelector('input[name="expat"]:checked').value;
+      if (q6 === "expat_yes") addPoints("expat_yes");
+      if (q6 === "expat_no") addPoints("expat_no");
+
+      const q7 = document.querySelector('input[name="geo"]:checked').value;
+      if (q7 !== "noPref") addPoints(q7);
+
+      const q8 = document.querySelector('input[name="work"]:checked').value;
+      if (q8 !== "noPref") addPoints(q8);
+
+      const q9 = document.querySelector('input[name="health"]:checked').value;
+      if (q9 === "health_yes") addPoints("health_yes");
+
+      const q10 = document.querySelector('input[name="culture"]:checked').value;
+      if (q10 === "culture_local") addPoints("culture_local");
+      if (q10 === "culture_tourist") addPoints("culture_tourist");
+
+      const q11 = document.querySelector('input[name="pace"]:checked').value;
+      if (q11 === "pace_fast") addPoints("pace_fast");
+      if (q11 === "pace_slow") addPoints("pace_slow");
+      // Balanced pace or no preference -> no points
+
+      const q12 = document.querySelector('input[name="cost"]:checked').value;
+      if (q12 === "cost_low") addPoints("cost_low");
+      if (q12 === "cost_med") addPoints("cost_med");
+      if (q12 === "cost_high") addPoints("cost_high");
+      // If cost_ultra (no budget constraints) or noPref, no bias added
+
+      const q13 = document.querySelector('input[name="outdoors"]:checked').value;
+      if (q13 !== "noPref") addPoints(q13);
+
+      const q14 = document.querySelector('input[name="language"]:checked').value;
+      if (q14 === "lang_none") addPoints("lang_none");
+      if (q14 === "lang_basic") addPoints("lang_basic");
+      // If fluent or no preference, no points (any region is fine)
+
+      const q15 = document.querySelector('input[name="transit"]:checked').value;
+      if (q15 === "transit_yes") addPoints("transit_yes");
+
+      const q16 = document.querySelector('input[name="infrastructure"]:checked').value;
+      if (q16 === "infra_yes") addPoints("infra_yes");
+
+      const q17 = document.querySelector('input[name="safety"]:checked').value;
+      if (q17 === "safe_yes") addPoints("safe_yes");
+
+      const q18 = document.querySelector('input[name="economy"]:checked').value;
+      if (q18 === "econ_yes") addPoints("econ_yes");
+
+      const q19 = document.querySelector('input[name="housing"]:checked').value;
+      if (q19 === "house_buy") addPoints("house_buy");
+      if (q19 === "house_rent") addPoints("house_rent");
+
+      const q20 = document.querySelector('input[name="social"]:checked').value;
+      if (q20 === "social_vibrant") addPoints("social_vibrant");
+      if (q20 === "social_quiet") addPoints("social_quiet");
+
+      // Determine the highest scoring region
+      let bestRegion = null;
+      let maxScore = -1;
+      for (const region in scores) {
+        if (scores[region] > maxScore) {
+          maxScore = scores[region];
+          bestRegion = region;
+        }
+      }
+
+      // Display the result to the user
+      const resultDiv = document.getElementById("result");
+      if (bestRegion) {
+        resultDiv.textContent = "Based on your answers, the best region for you is " + bestRegion + "!";
+      } else {
+        resultDiv.textContent = "Please answer the questions to get a recommendation.";
+      }
+    }
+  </script>
 </body>
 </html>
